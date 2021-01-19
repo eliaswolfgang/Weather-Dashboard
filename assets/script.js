@@ -33,13 +33,14 @@ $(document).ready(function () {
                     var currentTemp = $(`<p>Temperature: ${response.current.temp}°F</p>`);
                     var currentFeelsLike = $(`<p>Feels Like: ${response.current.feels_like}°F</p>`);
                     var currentHum = $(`<p>Humidity: ${response.current.humidity}%</p>`);
+                    var currentWind = $(`<p>Wind Speed: ${response.current.wind_speed} MPH</p>`);
                     var currentUVI = $(`<p>UV Index: <span id="uvindex">${response.current.uvi}</span></p>`);
                     var fiveDayForecast = response.daily;
                     console.log(fiveDayForecast);
 
                     $("#currentDate").text(" " + currentDay);
                     $("#currentConditions").html(currentConditionsIcon);
-                    $("#currentWeather").prepend(currentTemp).append(currentFeelsLike, currentHum, currentUVI);
+                    $("#currentWeather").prepend(currentTemp).append(currentFeelsLike, currentHum, currentWind, currentUVI);
 
                     for (let i=1; i < 6 ; i++) {
                         var newDays = $(`<div class="card text-white bg-info mb-3" style="width: 18rem;"><div class="card-body"><h5 class="card-title">${new Date(fiveDayForecast[i].dt * 1000).toLocaleDateString("en-US")}</h5><img src="http://openweathermap.org/img/wn/${fiveDayForecast[i].weather[0].icon}.png" /><p class="card-text">Temp: ${fiveDayForecast[i].temp.day}°F</p><p class="card-text">Humidity: ${fiveDayForecast[i].humidity}</p></div></div>`);
@@ -61,6 +62,7 @@ $(document).ready(function () {
         localStorage.setItem("recentCity", newCity);
         localStorage.setItem(newCity, newCity);
         location.reload();
+
     });
 
     $(".btn-link").on("click", function() {
@@ -94,6 +96,7 @@ $(document).ready(function () {
                         var currentTemp = $(`<p>Temperature: ${response.current.temp}°F</p>`);
                         var currentFeelsLike = $(`<p>Feels Like: ${response.current.feels_like}°F</p>`);
                         var currentHum = $(`<p>Humidity: ${response.current.humidity}%</p>`);
+                        var currentWind = $(`<p>Wind Speed: ${response.current.wind_speed} MPH</p>`);
                         var currentUVI = $(`<p>UV Index: <span id="uvindex">${response.current.uvi}</span></p>`);
                         var fiveDayForecast = response.daily;
                         console.log(fiveDayForecast);
