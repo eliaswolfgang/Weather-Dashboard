@@ -103,7 +103,7 @@ $(document).ready(function () {
     
                         $("#currentDate").text(" " + currentDay);
                         $("#currentConditions").html(currentConditionsIcon);
-                        $("#currentWeather").prepend(currentTemp).append(currentFeelsLike, currentHum, currentUVI);
+                        $("#currentWeather").prepend(currentTemp).append(currentFeelsLike, currentHum, currentWind, currentUVI);
     
                         for (let i=1; i < 6 ; i++) {
                             var newDays = $(`<div class="card text-white bg-info mb-3" style="width: 18rem;"><div class="card-body"><h5 class="card-title">${new Date(fiveDayForecast[i].dt * 1000).toLocaleDateString("en-US")}</h5><img src="http://openweathermap.org/img/wn/${fiveDayForecast[i].weather[0].icon}.png" /><p class="card-text">Temp: ${fiveDayForecast[i].temp.day}°F</p><p class="card-text">Humidity: ${fiveDayForecast[i].humidity}</p></div></div>`);
