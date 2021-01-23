@@ -44,7 +44,7 @@ $(document).ready(function () {
                         }
 
                         var fiveDayForecast = result.daily;
-                        console.log(fiveDayForecast);
+                        
     
                         $("#currentDate").text(" " + currentDay);
                         $("#currentConditions").html(currentConditionsIcon);
