@@ -29,6 +29,9 @@ On user search, these API calls allow the application to dynamically generate:
 
 * A search history, built using local storage, appended via link buttons to the basic HTML
 
+When the page is reloaded, local storage will persist and will automatically generate the current conditions and five-day forecast for the most recent searched city.
+Additionally, the UV index is displayed with different colors to indicate the index as being favorable (less than 3), moderate (between 3 and 7), or severe (8 or above).
+
 The application is built using Bootstrap (v. 4.5): https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css, 
 and jQuery (v. 3.5): https://code.jquery.com/jquery-3.5.1.min.js.
 
