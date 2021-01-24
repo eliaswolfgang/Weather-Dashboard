@@ -1,12 +1,13 @@
 $(document).ready(function () {
-
+    // First, get the most recent searched city from localStorage...
     var recentSearch = localStorage.getItem("recentCity");
-
+    // ... and display our search history.
     for (let i = 0; i < localStorage.length; i++) {
         if (localStorage.key(i) !== recentSearch) {
             $("#searchHistory").append(`<li class="list-group-item"><button type="button" class="btn btn-link">${localStorage.getItem(localStorage.key(i))}</button></li>`);
         }
-    }
+    } 
+    // Run the most recent search through both API calls...
     var recentCityURL1 = "https://api.openweathermap.org/data/2.5/weather?q=" + recentSearch + "&appid=33c8f0cb48a2516d3091cecee2d54254";
     
         $.ajax({
@@ -26,6 +27,7 @@ $(document).ready(function () {
                     url: recentCityURL2,
                     type: "GET",
                     success: function (result) {
+                        // ... and display the result...
                         var currentDay = new Date(result.current.dt * 1000).toLocaleDateString("en-US");
                         var currentConditionsIcon = $(`<img src="http://openweathermap.org/img/wn/${result.current.weather[0].icon}.png" alt="current weather" />`);
                         var currentTemp = $(`<p>Temperature: ${result.current.temp}°F</p>`);
@@ -49,7 +51,7 @@ $(document).ready(function () {
                         $("#currentDate").text(" " + currentDay);
                         $("#currentConditions").html(currentConditionsIcon);
                         $("#currentWeather").prepend(currentTemp).append(currentFeelsLike, currentHum, currentWind, currentUVI);
-    
+                        // ... plus the 5-day forecast.
                         for (let i = 1; i < 6; i++) {
                             var newDays = $(`<div class="card text-white bg-info mb-3" style="width: 18rem;"><div class="card-body"><h5 class="card-title">${new Date(fiveDayForecast[i].dt * 1000).toLocaleDateString("en-US")}</h5><img src="http://openweathermap.org/img/wn/${fiveDayForecast[i].weather[0].icon}.png" /><p class="card-text">Temp: ${fiveDayForecast[i].temp.day}°F</p><p class="card-text">Humidity: ${fiveDayForecast[i].humidity}%</p></div></div>`);
                             $("#fiveDay").append(newDays);
@@ -59,7 +61,7 @@ $(document).ready(function () {
                 })
             }
         });
-
+        // Event handling a new search. Both API calls run, result displayed.
     $(".search").on("click", function () {
 
         var newCity = $("#newCitySearch").val().trim();
@@ -116,7 +118,7 @@ $(document).ready(function () {
             }
         });
     });
-
+    // Exact same functionality as above for our search history.
     $(".btn-link").on("click", function() {
 
         var searchedCity = $(this).text();
